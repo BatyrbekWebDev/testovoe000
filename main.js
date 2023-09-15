@@ -1,25 +1,34 @@
-const zone1 = document.querySelector('.zone-1');
-const zone2 = document.querySelector('.zone-2');
-const ufo = document.querySelector('#ufo');
+let lists = document.querySelectorAll('.list');
+let column_1 = document.querySelector('.column_1'); // изменение
+let column_2 = document.querySelector('.column_2'); // изменение
+let column_3 = document.querySelector('.column_3'); // изменение
 
+for (list of lists) {
+  list.addEventListener('dragstart', function (e) {
+    let selected = e.target;
 
-zone1.ondragover = allowDrop;
-zone2.ondragover = allowDrop;
+    column_1.addEventListener('dragover', function (e) {
+      e.preventDefault();
+    });
+    column_1.addEventListener('drop', function (e) {
+      column_1.appendChild(selected);
+      selected = null;
+    });
 
-function allowDrop(event) {
-  event.preventDefault();
-}
+    column_2.addEventListener('dragover', function (e) {
+      e.preventDefault();
+    });
+    column_2.addEventListener('drop', function (e) {
+      column_2.appendChild(selected);
+      selected = null;
+    });
 
-ufo.ondragstart = drag;
-function drag(event) {
-  event.dataTransfer.setData('id', event.target.id);
-}
-
-zone1.ondrop = drop;
-zone2.ondrop = drop;
-
-function drop (event) {
-  let itemId = event.dataTransfer.getData('id');
-  console.log(itemId);
-  event.target.append(document.getElementById(itemId));
+    column_3.addEventListener('dragover', function (e) {
+      e.preventDefault();
+    });
+    column_3.addEventListener('drop', function (e) {
+      column_3.appendChild(selected);
+      selected = null;
+    });
+  });
 }
